@@ -1,43 +1,58 @@
 h1, p, * {
-    font-family: sans-serif;
-  }
+  font-family: sans-serif;
+}
 
 h1 {
-    text-align: center;
+  text-align: center;
 }
-  
-  html {
-    background:#f8d7f1;
-  }
-  
-  body {
-    background: white;
-    width: 600px;
-    margin: auto;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .note {
-    border-bottom: 1px solid #aaa;
-    padding: 15px;
-  }
-  
-  input[type=text] {
-    width: 80%;
-    background: #fefefe;
-    border-radius: 4px;
-    padding: 10px 8px;
-    border: 1px solid #444;
-    font-size: 20px;
-  }
-  
-  button {
-    background: #c9eedd;
-    border-radius: 4px;
-    padding: 10px 8px;
-    border: 1px solid #444;
-    font-size: 18px;
-    cursor: pointer;
-  }
+
+body {
+  background: #f8d7f1;
+  margin: 0;
+  padding-bottom: 50px;
+}
+
+#main-container {
+  background: white;
+  width: 600px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.article {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #aaa;
+  padding: 15px;
+  vertical-align: middle;
+}
+
+.article a {
+  color: rgb(173, 68, 128);
+  text-decoration: none;
+}
+
+.article a:hover {
+  color: rgb(243, 174, 213);
+  text-decoration: none;
+}
+
+.article img {
+  width: 200px;
+  margin-right: 10px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  color: rgb(241, 129, 200);
+  padding: 0px;
+  text-align: center;
+  font-size: 10px;
+}
+
