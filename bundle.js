@@ -18,8 +18,13 @@
       var NewsClient2 = class {
         constructor() {
         }
-        loadArticles(callback) {
-          fetch(`https://content.guardianapis.com/search?q=UK&query-fields=headline&show-fields=thumbnail,headline,byline&order-by=newest&api-key=${apiKey}`).then((response) => {
+        loadArticles(callback, searchKeyword) {
+          if (searchKeyword == null) {
+            searchKeyword = "";
+          } else {
+            searchKeyword = "q=" + searchKeyword;
+          }
+          fetch(`https://content.guardianapis.com/search?${searchKeyword}&query-fields=headline&show-fields=thumbnail,headline,byline&order-by=newest&api-key=${apiKey}`).then((response) => {
             return response.json();
           }).then((data) => {
             callback(data);
@@ -59,18 +64,19 @@
           this.model = model2;
           this.client = client2;
           this.mainContainerEl = document.querySelector("#main-container");
+          const searchBox = document.querySelector("#search-box");
+          const searchButton = document.querySelector("#search-button");
+          searchButton.addEventListener("click", () => {
+            this.clearArticles();
+            this.displayArticlesFromApi(searchBox.value);
+          });
         }
         displayArticles() {
           this.model.getArticles().forEach((article) => {
             const articleDiv = document.createElement("div");
             articleDiv.className = "article";
             const articleImg = document.createElement("img");
-            if (article.fields.thumbnail != null) {
-              articleImg.src = article.fields.thumbnail;
-            } else {
-              console.log(`no image available for article "${article.id}"`);
-              articleImg.src = "https://dummyimage.com/200x120/ffffff/ffffff";
-            }
+            articleImg.src = this.getArticleImgUrl(article);
             articleDiv.append(articleImg);
             const articleAnchor = document.createElement("a");
             articleAnchor.textContent = article.webTitle;
@@ -80,11 +86,28 @@
             this.mainContainerEl.append(articleDiv);
           });
         }
-        displaysArticlesFromApi() {
+        displayArticlesFromApi(searchKeyword) {
           this.client.loadArticles((apiData) => {
             this.model.setsArticles(apiData.response.results);
             console.log(this.model.getArticles());
             this.displayArticles();
+          }, searchKeyword);
+        }
+        getArticleImgUrl(article) {
+          let articleImgUrl = "";
+          if (article.fields != null && article.fields.thumbnail != null) {
+            articleImgUrl = article.fields.thumbnail;
+          } else {
+            console.log(`no image available for article "${article.id}"`);
+            articleImgUrl = "background.webp";
+          }
+          ;
+          return articleImgUrl;
+        }
+        clearArticles() {
+          const allArticleDivs = document.querySelectorAll("div.article");
+          allArticleDivs.forEach((div) => {
+            div.remove();
           });
         }
       };
@@ -99,24 +122,5 @@
   var model = new NewsModel();
   var client = new NewsClient();
   var view = new NewsView(model, client);
-  model.addArticle(
-    {
-      sectionName: "Section 1",
-      webTitle: "Article Title 1",
-      fields: {
-        thumbnail: "https://dummyimage.com/200x120/ffffff/ffffff"
-      }
-    }
-  );
-  model.addArticle(
-    {
-      sectionName: "Section 2",
-      webTitle: "Article Title 2",
-      fields: {
-        thumbnail: "https://dummyimage.com/200x120/ffffff/ffffff"
-      }
-    }
-  );
-  console.log(model.getArticles());
-  view.displayArticles();
+  view.displayArticlesFromApi();
 })();

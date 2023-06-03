@@ -3,6 +3,14 @@ class NewsView {
         this.model = model;
         this.client = client;
         this.mainContainerEl = document.querySelector('#main-container');
+        
+        const searchBox = document.querySelector('#search-box');
+        const searchButton = document.querySelector('#search-button');
+        searchButton.addEventListener('click', ()=>{
+            this.clearArticles();
+            this.displayArticlesFromApi(searchBox.value);
+        });
+
 
     }
     displayArticles() {
@@ -11,12 +19,8 @@ class NewsView {
             articleDiv.className = 'article';
 
             const articleImg = document.createElement('img');
-            if (article.fields.thumbnail != null) {
-                articleImg.src = article.fields.thumbnail;
-            } else {
-                console.log(`no image available for article "${article.id}"`);
-                articleImg.src = 'https://dummyimage.com/200x120/ffffff/ffffff';
-            }
+            articleImg.src = this.getArticleImgUrl(article);
+
             articleDiv.append(articleImg);
 
             const articleAnchor = document.createElement('a');
@@ -29,13 +33,34 @@ class NewsView {
         });
     }
 
-    displaysArticlesFromApi() {
+    displayArticlesFromApi(searchKeyword) {
         this.client.loadArticles((apiData)=>{
             this.model.setsArticles(apiData.response.results);
             console.log(this.model.getArticles());
             this.displayArticles();
-        });
+        }, searchKeyword);
     }
+
+    getArticleImgUrl (article) {
+        let articleImgUrl ='';
+        if (article.fields != null && article.fields.thumbnail != null) {
+            articleImgUrl = article.fields.thumbnail;
+        } else {
+            console.log(`no image available for article "${article.id}"`);
+            articleImgUrl = 'background.webp';
+        };
+        return articleImgUrl;
+    }
+
+    clearArticles() {
+        const allArticleDivs = document.querySelectorAll('div.article');
+        allArticleDivs.forEach((div) => {
+            div.remove();
+        });
+
+    }
+
+    
 };
 
 module.exports = NewsView;

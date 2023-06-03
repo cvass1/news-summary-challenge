@@ -1,58 +1,117 @@
-h1, p, * {
-  font-family: sans-serif;
-}
-
-h1 {
-  text-align: center;
-}
-
 body {
-  background: #f8d7f1;
+  font-family: Overpass;
   margin: 0;
-  padding-bottom: 50px;
 }
 
-#main-container {
-  background: white;
-  width: 600px;
-  margin: auto;
-  margin-top: 20px;
-  padding: 20px;
-  border-radius: 10px;
+h1,
+h2,
+h3 {
+  color: #707072;
+  font-family: Chivo;
 }
 
-.article {
+p {
+  color: #707072;
+  opacity: .7;
+  
+}
+
+a {
+  text-decoration: none;
+  color: #707072;
+}
+a:hover {
+  color: #b3b3b5;
+}
+
+#search {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid #aaa;
-  padding: 15px;
-  vertical-align: middle;
+  justify-content: center;
+  padding: 20px 0;
+  width: 100vw;
+  color: #707072;
 }
 
-.article a {
-  color: rgb(173, 68, 128);
-  text-decoration: none;
-}
-
-.article a:hover {
-  color: rgb(243, 174, 213);
-  text-decoration: none;
-}
-
-.article img {
-  width: 200px;
+#search p {
   margin-right: 10px;
 }
 
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: white;
-  color: rgb(241, 129, 200);
-  padding: 0px;
+#search input[type="text"] {
+  width: 300px;
+  color: #707072; 
+  border: 1px solid rgba(112, 112, 114, 0.5);
+}
+
+#search button {
+  margin-left: 10px; 
+  color: #707072; 
+  border: 1px solid rgba(112, 112, 114, 0.5);
+}
+
+
+#main-container {
+  width: 96vw;
+  padding: 20px 2vw;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('background.webp');
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
   text-align: center;
-  font-size: 10px;
+}
+
+header h1 {
+  color: white;
+  font-size: 45px;
+  margin: 0;
+}
+
+header p {
+  color: white;
+  font-size: 24px;
+}
+
+.article {
+  background: white;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 90%;
+  text-align: center;
+  padding: 10px;
+  margin: 8px;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+}
+
+.article img {
+  width: 170px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.article a {
+  flex: 1;
+}
+
+footer {
+  background: #707072;
+  opacity: .7;
+
+  text-align: center;
+  padding: 5px 0;
+}
+
+footer p {
+  color: white;
 }
 

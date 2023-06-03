@@ -5,8 +5,13 @@ class NewsClient {
 
     }
 
-    loadArticles(callback) {
-        fetch(`https://content.guardianapis.com/search?q=UK&query-fields=headline&show-fields=thumbnail,headline,byline&order-by=newest&api-key=${apiKey}`)
+    loadArticles(callback, searchKeyword) {
+        if (searchKeyword == null) {
+            searchKeyword ="";
+        } else {
+            searchKeyword ="q="+ searchKeyword;
+        }
+        fetch(`https://content.guardianapis.com/search?${searchKeyword}&query-fields=headline&show-fields=thumbnail,headline,byline&order-by=newest&api-key=${apiKey}`)
         .then((response) =>{
             return response.json()
         })

@@ -6,25 +6,19 @@ const model = new NewsModel();
 const client = new NewsClient();
 const view = new NewsView(model,client);
 
-model.addArticle(
-    {sectionName: "Section 1",
-    webTitle: "Article Title 1",
-    fields: {
-        thumbnail: 'https://dummyimage.com/200x120/ffffff/ffffff',
-    }
-    });
+// for(let i = 0; i< 10; i++) {
+//     model.addArticle(
+//         {sectionName: "Section 1",
+//         webTitle: "Article Title 1",
+//         fields: {
+//             thumbnail: 'background.webp',
+//         }
+//     });
+// };
 
-    model.addArticle(
-        {sectionName: "Section 2",
-        webTitle: "Article Title 2",
-        fields: {
-            thumbnail: 'https://dummyimage.com/200x120/ffffff/ffffff',
-        }
-        });
+// console.log(model.getArticles());
+// view.displayArticles();
 
-console.log(model.getArticles());
-view.displayArticles();
-
-//view.displaysArticlesFromApi();
+view.displayArticlesFromApi();
 
 

@@ -15,8 +15,22 @@ describe('NewsView', ()=> {
         const model = new NewsModel();
         const view = new NewsView(model);
 
-        model.addArticle("article 1");
-        model.addArticle("article 2");
+        model.addArticle({
+            sectionName: "Section 1",
+            webTitle: "Article Title 1",
+            fields: {
+                thumbnail: "test URL 1",
+            }
+        });
+
+        model.addArticle({
+            sectionName: "Section 2",
+            webTitle: "Article Title 2",
+            fields: {
+                thumbnail: "test URL 2",
+            }
+        });
+
         view.displayArticles();
 
         const allArticleDivs = document.querySelectorAll('div.article');
@@ -38,23 +52,28 @@ describe('NewsView', ()=> {
                         {
                             sectionName: "Section 1",
                             webTitle: "Article Title 1",
+                            fields: {
+                                thumbnail: "test URL 1",
+                            }
                         },
                         {
                             sectionName: "Section 2",
                             webTitle: "Article Title 2",
+                            fields: {
+                                thumbnail: "test URL 2",
+                            }
                         }
                     ]
                 }
             });
         });
 
-        view.displaysArticlesFromApi();
+        view.displayArticlesFromApi();
 
         const allArticleDivs = document.querySelectorAll('div.article');
         expect(allArticleDivs.length).toBe(2);
         expect(allArticleDivs[0].textContent).toEqual("Article Title 1");
 
     });
-
 
 });
