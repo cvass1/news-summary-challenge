@@ -51,7 +51,7 @@ I can specify a search query on the page and get articles matching this search
 
 ## Headlines page
 
-![Headlines screenshot](./headlines-screenshot.png)
+![Headlines screenshot](./headlinesScreenshot.png)
 
 ## API
 
