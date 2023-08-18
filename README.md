@@ -7,12 +7,32 @@ A Guardian API app made as part of the Makers Academy Software Development cours
 The app grabs all the headlines from the Guardian newspaper API and displays them on a
 page. Clicking on a headline will link the user to the actual article page on the Guardian's website.
 
+Note: this JavaScript program runs solely on the client (frontend) side, within a web browser. All the variables and state in the program are kept in the web browser's memory.
+
 ## Learning objectives
 
 - TDD a Javascript program running in a web browser, using modern JS build tools.
 - Use the DOM to manipulate the web page structure and content.
 - Use fetch to send HTTP requests to an API.
 - Use jest mocking functionality to test drive an API class.
+
+## How to run
+
+Install dependencies:
+
+```bash
+; npm install
+```
+
+Open the HTML file in your browser:
+
+```bash
+# You can run this from your terminal,
+# or alternatively double-click on the HTML file
+# from the file explorer (Finder, on mac).
+
+; open index.html
+```
 
 ### Technologies
 
