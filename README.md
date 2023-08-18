@@ -29,7 +29,7 @@ Open the HTML file in your browser:
 ```bash
 # You can run this from your terminal,
 # or alternatively double-click on the HTML file
-# from the file explorer (Finder, on mac).
+# from the file explorer.
 
 ; open index.html
 ```
